@@ -9,18 +9,27 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  email     String
+  email     String   @unique
   password  String
-  name      String
+  name      String?
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
+  //relationship
+  notes     Note[]
+
+  @@map("users")
 }
 
 model Note {
   id          Int      @id @default(autoincrement())
   title       String
-  description String
-  url         String
+  description String?
+  url         String?
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt
+  //relationship
+  userId      Int
+  User        User     @relation(fields: [userId], references: [id])
+
+  @@map("notes")
 }

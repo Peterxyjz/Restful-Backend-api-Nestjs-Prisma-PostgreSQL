@@ -17,5 +17,6 @@ networks:
 # docker compose up -d
 # Start only:
 # docker compose up -d dev-database -d
-
+# remove container+volumes:
+# docker compose rm dev-database --stop --force --volumes
       
