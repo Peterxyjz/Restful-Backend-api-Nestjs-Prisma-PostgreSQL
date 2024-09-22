@@ -11,6 +11,18 @@ services:
       POSTGRES_DB: mydb
     networks:
       - nestjs-network
+  #Create another container for "TEST"
+  test-database: 
+    image: postgres:15.0
+    container_name: test-database
+    ports:
+      - 5435:5432 # {port in host}:{port in container}
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: mydb
+    networks:
+      - nestjs-network
 networks:
   nestjs-network:
 # Create container, network ... from "docker composer" file:
